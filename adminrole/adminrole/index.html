@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareHome Management Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="../logout.js"></script>
+  <style>
+    body { margin:0; font-family:Arial, sans-serif; background:#f4f6f9; }
+    .dashboard-container { display:flex; min-height:100vh; }
+    .sidebar { width:240px; background:#2c3e50; color:#fff; }
+    .sidebar-header { padding:20px; font-size:1.2rem; background:#1a252f; }
+    .sidebar-menu { list-style:none; margin:0; padding:0; }
+    .menu-item a { display:flex; align-items:center; gap:10px; padding:14px 20px; color:#ecf0f1; text-decoration:none; }
+    .menu-item.active, .menu-item a:hover { background:#34495e; }
+    .main-content { flex:1; padding:20px; }
+    .main-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+    .user-info { display:flex; align-items:center; gap:8px; color:#2c3e50; }
+    table th, table td { font-size:14px; }
+    .btn { transition:background .3s; }
+    .btn:hover { opacity:.9; }
+  </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-home"></i> CareHome Admin</h2>
+            </div>
+            <ul class="sidebar-menu">
+      <li class="menu-item active"><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+      <li class="menu-item"><a href="residents.html"><i class="fas fa-users"></i> Residents</a></li>
+      <li class="menu-item"><a href="accounts.html"><i class="fas fa-calculator"></i> Accounts</a></li>
+      <li class="menu-item"><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <h1>CareHome Management Dashboard</h1>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Admin User</span>
+                </div>
+            </header>
+
+    <!-- Top Actions -->
+    <div class="content-area" style="padding-top:0;">
+      <div class="top-actions" style="display:flex; gap:10px; flex-wrap:wrap; margin:16px 0;">
+        <button id="btnAddHome" class="btn" style="background:#3498db;color:#fff;padding:10px 16px;border:none;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:8px;">
+          <i class="fas fa-plus"></i> Add Home
+        </button>
+        <button id="btnViewHome" class="btn" style="background:#2ecc71;color:#fff;padding:10px 16px;border:none;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:8px;">
+          <i class="fas fa-eye"></i> View Home
+        </button>
+        <button id="btnTechnicalContact" class="btn" style="background:#9b59b6;color:#fff;padding:10px 16px;border:none;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:8px;">
+          <i class="fas fa-headset"></i> Technical Contact
+        </button>
+                        </div>
+                </div>
+
+    <!-- Homes Table -->
+    <div class="content-area">
+      <div class="homes-card" style="background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.08);overflow:hidden;">
+        <div style="padding:14px 18px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:8px;">
+          <i class="fas fa-house"></i>
+          <h2 style="margin:0;font-size:1.1rem;color:#2c3e50;">Homes Details</h2>
+                        </div>
+        <div style="padding:12px; overflow-x:auto;">
+          <table class="residents-table" style="width:100%;border-collapse:collapse;">
+            <thead>
+              <tr style="background:#f8f9fa;">
+                <th style="text-align:left;padding:10px;border-bottom:1px solid #eee;">#</th>
+                <th style="text-align:left;padding:10px;border-bottom:1px solid #eee;">Home Name</th>
+                <th style="text-align:right;padding:10px;border-bottom:1px solid #eee;">Bank</th>
+                <th style="text-align:right;padding:10px;border-bottom:1px solid #eee;">Cash</th>
+                <th style="text-align:right;padding:10px;border-bottom:1px solid #eee;">Total</th>
+                <th style="text-align:right;padding:10px;border-bottom:1px solid #eee;">Residents</th>
+                <th style="text-align:left;padding:10px;border-bottom:1px solid #eee;">Last Action</th>
+                <th style="text-align:center;padding:10px;border-bottom:1px solid #eee;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="homesTableBody">
+              <tr>
+                <td style="padding:10px;">1</td>
+                <td style="padding:10px;">Rolekulla Care Home</td>
+                <td style="padding:10px;text-align:right;">$5,000.00</td>
+                <td style="padding:10px;text-align:right;">$2,500.00</td>
+                <td style="padding:10px;text-align:right;font-weight:600;">$7,500.00</td>
+                <td style="padding:10px;text-align:right;">28</td>
+                <td style="padding:10px;">Payment received - 2h ago</td>
+                <td style="padding:10px;text-align:center;">
+                  <button class="btnViewMore" data-home='{"id":1,"name":"Rolekulla Care Home","address":"12 Elm Street, London","beds":40,"residents":28,"bank":5000,"cash":2500,"balance":7500,"userName":"roadmin","userPassword":"••••••"}' style="background:#3498db;color:#fff;border:none;border-radius:6px;padding:8px 12px;cursor:pointer;">
+                    View More Details
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:10px;">2</td>
+                <td style="padding:10px;">Sunshine Care Home</td>
+                <td style="padding:10px;text-align:right;">$3,200.00</td>
+                <td style="padding:10px;text-align:right;">$1,800.00</td>
+                <td style="padding:10px;text-align:right;font-weight:600;">$5,000.00</td>
+                <td style="padding:10px;text-align:right;">32</td>
+                <td style="padding:10px;">New resident admitted - 1h ago</td>
+                <td style="padding:10px;text-align:center;">
+                  <button class="btnViewMore" data-home='{"id":2,"name":"Sunshine Care Home","address":"45 Oak Avenue, Manchester","beds":35,"residents":32,"bank":3200,"cash":1800,"balance":5000,"userName":"sunadmin","userPassword":"••••••"}' style="background:#3498db;color:#fff;border:none;border-radius:6px;padding:8px 12px;cursor:pointer;">
+                    View More Details
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:10px;">3</td>
+                <td style="padding:10px;">Golden Years Care Home</td>
+                <td style="padding:10px;text-align:right;">$7,500.00</td>
+                <td style="padding:10px;text-align:right;">$3,200.00</td>
+                <td style="padding:10px;text-align:right;font-weight:600;">$10,700.00</td>
+                <td style="padding:10px;text-align:right;">45</td>
+                <td style="padding:10px;">Expense recorded - 30m ago</td>
+                <td style="padding:10px;text-align:center;">
+                  <button class="btnViewMore" data-home='{"id":3,"name":"Golden Years Care Home","address":"78 Pine Street, Birmingham","beds":50,"residents":45,"bank":7500,"cash":3200,"balance":10700,"userName":"goldadmin","userPassword":"••••••"}' style="background:#3498db;color:#fff;border:none;border-radius:6px;padding:8px 12px;cursor:pointer;">
+                    View More Details
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:10px;">4</td>
+                <td style="padding:10px;">Peaceful Living Care Home</td>
+                <td style="padding:10px;text-align:right;">$2,100.00</td>
+                <td style="padding:10px;text-align:right;">$900.00</td>
+                <td style="padding:10px;text-align:right;font-weight:600;">$3,000.00</td>
+                <td style="padding:10px;text-align:right;">25</td>
+                <td style="padding:10px;">Income added - 15m ago</td>
+                <td style="padding:10px;text-align:center;">
+                  <button class="btnViewMore" data-home='{"id":4,"name":"Peaceful Living Care Home","address":"123 Maple Drive, Liverpool","beds":30,"residents":25,"bank":2100,"cash":900,"balance":3000,"userName":"peaceadmin","userPassword":"••••••"}' style="background:#3498db;color:#fff;border:none;border-radius:6px;padding:8px 12px;cursor:pointer;">
+                    View More Details
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+<script>
+  // Sample data for all care homes
+  const allCareHomes = [
+    {
+      id: 1,
+      name: "Rolekulla Care Home",
+      address: "12 Elm Street, London",
+      totalRooms: 20,
+      singleRooms: 15,
+      doubleRooms: 5,
+      beds: 40,
+      residents: 28,
+      bank: 5000,
+      cash: 2500,
+      balance: 7500,
+      userName: "roadmin",
+      userPassword: "••••••",
+      lastAction: "Payment received - 2h ago"
+    },
+    {
+      id: 2,
+      name: "Sunshine Care Home",
+      address: "45 Oak Avenue, Manchester",
+      totalRooms: 18,
+      singleRooms: 12,
+      doubleRooms: 6,
+      beds: 35,
+      residents: 32,
+      bank: 3200,
+      cash: 1800,
+      balance: 5000,
+      userName: "sunadmin",
+      userPassword: "••••••",
+      lastAction: "New resident admitted - 1h ago"
+    },
+    {
+      id: 3,
+      name: "Golden Years Care Home",
+      address: "78 Pine Street, Birmingham",
+      totalRooms: 25,
+      singleRooms: 18,
+      doubleRooms: 7,
+      beds: 50,
+      residents: 45,
+      bank: 7500,
+      cash: 3200,
+      balance: 10700,
+      userName: "goldadmin",
+      userPassword: "••••••",
+      lastAction: "Expense recorded - 30m ago"
+    },
+    {
+      id: 4,
+      name: "Peaceful Living Care Home",
+      address: "123 Maple Drive, Liverpool",
+      totalRooms: 15,
+      singleRooms: 10,
+      doubleRooms: 5,
+      beds: 30,
+      residents: 25,
+      bank: 2100,
+      cash: 900,
+      balance: 3000,
+      userName: "peaceadmin",
+      userPassword: "••••••",
+      lastAction: "Income added - 15m ago"
+    }
+  ];
+
+  // View All Homes Modal
+  function openAllHomesModal() {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9999;';
+    const modal = document.createElement('div');
+    modal.style.cssText = 'background:#fff;border-radius:10px;max-width:900px;width:95%;max-height:80vh;box-shadow:0 10px 30px rgba(0,0,0,.2);overflow:hidden;';
+    
+    // Create table rows for all homes
+    const homeRows = allCareHomes.map(home => `
+      <tr>
+        <td style="padding:12px;border-bottom:1px solid #eee;">${home.id}</td>
+        <td style="padding:12px;border-bottom:1px solid #eee;">${home.name}</td>
+        <td style="padding:12px;border-bottom:1px solid #eee;">${home.address}</td>
+        <td style="padding:12px;border-bottom:1px solid #eee;text-align:center;">${home.beds}</td>
+        <td style="padding:12px;border-bottom:1px solid #eee;text-align:center;">${home.residents}</td>
+        <td style="padding:12px;border-bottom:1px solid #eee;text-align:right;">$${Number(home.bank).toLocaleString(undefined,{minimumFractionDigits:2})}</td>
+        <td style="padding:12px;border-bottom:1px solid #eee;text-align:right;">$${Number(home.cash).toLocaleString(undefined,{minimumFractionDigits:2})}</td>
+        <td style="padding:12px;border-bottom:1px solid #eee;text-align:right;font-weight:600;">$${Number(home.balance).toLocaleString(undefined,{minimumFractionDigits:2})}</td>
+        <td style="padding:12px;border-bottom:1px solid #eee;text-align:center;">
+          <button class="btnEditHome" data-home='${JSON.stringify(home)}' style="background:#f39c12;color:#fff;border:none;border-radius:4px;padding:6px 10px;cursor:pointer;margin-right:5px;font-size:12px;">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button class="btnDeleteHome" data-home='${JSON.stringify(home)}' style="background:#e74c3c;color:#fff;border:none;border-radius:4px;padding:6px 10px;cursor:pointer;font-size:12px;">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        </td>
+      </tr>
+    `).join('');
+
+    modal.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #eee;">
+        <h3 style="margin:0;font-size:1.1rem;color:#2c3e50;display:flex;gap:8px;align-items:center;"><i class="fas fa-eye"></i> All Care Homes</h3>
+        <button id="allHomesCloseBtn" style="background:#e74c3c;color:#fff;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;">Close</button>
+      </div>
+      <div style="padding:16px 18px;overflow-y:auto;max-height:60vh;">
+        <table style="width:100%;border-collapse:collapse;">
+          <thead>
+            <tr style="background:#f8f9fa;">
+              <th style="text-align:left;padding:10px;border-bottom:1px solid #eee;">#</th>
+              <th style="text-align:left;padding:10px;border-bottom:1px solid #eee;">Home Name</th>
+              <th style="text-align:left;padding:10px;border-bottom:1px solid #eee;">Address</th>
+              <th style="text-align:center;padding:10px;border-bottom:1px solid #eee;">Beds</th>
+              <th style="text-align:center;padding:10px;border-bottom:1px solid #eee;">Residents</th>
+              <th style="text-align:right;padding:10px;border-bottom:1px solid #eee;">Bank</th>
+              <th style="text-align:right;padding:10px;border-bottom:1px solid #eee;">Cash</th>
+              <th style="text-align:right;padding:10px;border-bottom:1px solid #eee;">Total</th>
+              <th style="text-align:center;padding:10px;border-bottom:1px solid #eee;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${homeRows}
+          </tbody>
+        </table>
+      </div>`;
+    
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Close button
+    document.getElementById('allHomesCloseBtn').addEventListener('click',()=>document.body.removeChild(overlay));
+    overlay.addEventListener('click',e=>{if(e.target===overlay)document.body.removeChild(overlay);});
+
+    // Edit buttons
+    document.querySelectorAll('.btnEditHome').forEach(btn=>{
+      btn.addEventListener('click',function(){
+        const home = JSON.parse(this.getAttribute('data-home'));
+        openEditHomeModal(home);
+      });
+    });
+
+    // Delete buttons
+    document.querySelectorAll('.btnDeleteHome').forEach(btn=>{
+      btn.addEventListener('click',function(){
+        const home = JSON.parse(this.getAttribute('data-home'));
+        if(confirm(`Are you sure you want to delete "${home.name}"?`)) {
+          deleteHome(home.id);
+          document.body.removeChild(overlay);
+          openAllHomesModal(); // Refresh the modal
+        }
+      });
+    });
+  }
+
+  // View Single Home Modal (for individual home details)
+  function openHomeModal(home) {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9999;';
+    const modal = document.createElement('div');
+    modal.style.cssText = 'background:#fff;border-radius:10px;max-width:520px;width:95%;box-shadow:0 10px 30px rgba(0,0,0,.2);overflow:hidden;';
+    modal.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #eee;">
+        <h3 style="margin:0;font-size:1.1rem;color:#2c3e50;display:flex;gap:8px;align-items:center;"><i class="fas fa-house"></i> Home Details</h3>
+        <button id="homeCloseBtn" style="background:#e74c3c;color:#fff;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;">Close</button>
+      </div>
+      <div style="padding:16px 18px;display:grid;gap:10px;">
+        <div><strong>Home Name:</strong> ${home.name || '-'}</div>
+        <div><strong>Address:</strong> ${home.address || '-'}</div>
+        <div><strong>Total Rooms:</strong> ${home.totalRooms || '-'}</div>
+        <div><strong>Single Rooms:</strong> ${home.singleRooms || '-'}</div>
+        <div><strong>Double Rooms:</strong> ${home.doubleRooms || '-'}</div>
+        <div><strong>Total Beds:</strong> ${home.beds}</div>
+        <div><strong>Total Residents:</strong> ${home.residents}</div>
+        <div><strong>Bank:</strong> $${Number(home.bank||0).toLocaleString(undefined,{minimumFractionDigits:2})}</div>
+        <div><strong>Cash:</strong> $${Number(home.cash||0).toLocaleString(undefined,{minimumFractionDigits:2})}</div>
+        <div><strong>Total:</strong> $${Number((home.bank||0)+(home.cash||0)).toLocaleString(undefined,{minimumFractionDigits:2})}</div>
+        <div><strong>User Name:</strong> ${home.userName || '-'}</div>
+        <div><strong>User Password:</strong> ${home.userPassword || '-'}</div>
+      </div>`;
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    document.getElementById('homeCloseBtn').addEventListener('click',()=>document.body.removeChild(overlay));
+    overlay.addEventListener('click',e=>{if(e.target===overlay)document.body.removeChild(overlay);});
+  }
+
+  // Edit Home Modal
+  function openEditHomeModal(home) {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9999;';
+    const modal = document.createElement('div');
+    modal.style.cssText = 'background:#fff;border-radius:10px;max-width:520px;width:95%;box-shadow:0 10px 30px rgba(0,0,0,.2);overflow:hidden;';
+    modal.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #eee;">
+        <h3 style="margin:0;font-size:1.1rem;color:#2c3e50;"><i class="fas fa-edit"></i> Edit Home</h3>
+        <button id="editHomeCloseBtn" style="background:#e74c3c;color:#fff;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;">Close</button>
+      </div>
+      <form id="editHomeForm" style="padding:16px 18px;display:grid;gap:12px;">
+        <input type="hidden" name="homeId" value="${home.id}">
+        <label><strong>Home Name:</strong><br>
+          <input type="text" name="homeName" value="${home.name}" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>Address:</strong><br>
+          <input type="text" name="address" value="${home.address}" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>Total Rooms:</strong><br>
+          <input type="number" name="totalRooms" value="${home.totalRooms || ''}" min="1" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>Single Rooms:</strong><br>
+          <input type="number" name="singleRooms" value="${home.singleRooms || ''}" min="0" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>Double Rooms:</strong><br>
+          <input type="number" name="doubleRooms" value="${home.doubleRooms || ''}" min="0" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>Number of Beds:</strong><br>
+          <input type="number" name="beds" value="${home.beds}" min="1" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>User Name:</strong><br>
+          <input type="text" name="userName" value="${home.userName}" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>User Password:</strong><br>
+          <input type="password" name="userPassword" value="${home.userPassword}" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <button type="submit" style="background:#f39c12;color:#fff;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;">Update Home</button>
+      </form>`;
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Close actions
+    document.getElementById('editHomeCloseBtn').addEventListener('click',()=>document.body.removeChild(overlay));
+    overlay.addEventListener('click',e=>{if(e.target===overlay)document.body.removeChild(overlay);});
+
+    // Submit
+    document.getElementById('editHomeForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      const fd=new FormData(this);
+      const homeId = fd.get('homeId');
+      const updatedHome={
+        name:fd.get('homeName'),
+        address:fd.get('address'),
+        beds:fd.get('beds'),
+        userName:fd.get('userName'),
+        userPassword:fd.get('userPassword')
+      };
+      
+      // Update the home in the array
+      const homeIndex = allCareHomes.findIndex(h => h.id == homeId);
+      if(homeIndex !== -1) {
+        allCareHomes[homeIndex] = {...allCareHomes[homeIndex], ...updatedHome};
+        updateMainTable();
+      }
+      
+      console.log("Updated Home:",updatedHome);
+      alert("Home updated successfully!");
+      document.body.removeChild(overlay);
+    });
+  }
+
+  // Delete Home
+  function deleteHome(homeId) {
+    const homeIndex = allCareHomes.findIndex(h => h.id == homeId);
+    if(homeIndex !== -1) {
+      allCareHomes.splice(homeIndex, 1);
+      updateMainTable();
+      alert("Home deleted successfully!");
+    }
+  }
+
+  // Update main table
+  function updateMainTable() {
+    const tbody = document.getElementById('homesTableBody');
+    const homeRows = allCareHomes.map(home => `
+      <tr>
+        <td style="padding:10px;">${home.id}</td>
+        <td style="padding:10px;">${home.name}</td>
+        <td style="padding:10px;text-align:right;">$${Number(home.bank).toLocaleString(undefined,{minimumFractionDigits:2})}</td>
+        <td style="padding:10px;text-align:right;">$${Number(home.cash).toLocaleString(undefined,{minimumFractionDigits:2})}</td>
+        <td style="padding:10px;text-align:right;font-weight:600;">$${Number(home.balance).toLocaleString(undefined,{minimumFractionDigits:2})}</td>
+        <td style="padding:10px;text-align:right;">${home.residents}</td>
+        <td style="padding:10px;">${home.lastAction}</td>
+        <td style="padding:10px;text-align:center;">
+          <button class="btnViewMore" data-home='${JSON.stringify(home)}' style="background:#3498db;color:#fff;border:none;border-radius:6px;padding:8px 12px;cursor:pointer;">
+            View More Details
+          </button>
+        </td>
+      </tr>
+    `).join('');
+    
+    tbody.innerHTML = homeRows;
+    
+    // Re-attach event listeners
+    document.querySelectorAll('.btnViewMore').forEach(btn=>{
+      btn.addEventListener('click',function(){
+        try{const home=JSON.parse(this.getAttribute('data-home'));openHomeModal(home);}catch(e){alert('Unable to open details.');}
+      });
+    });
+  }
+
+  // Add Home Modal
+  function openAddHomeModal() {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9999;';
+    const modal = document.createElement('div');
+    modal.style.cssText = 'background:#fff;border-radius:10px;max-width:520px;width:95%;box-shadow:0 10px 30px rgba(0,0,0,.2);overflow:hidden;';
+    modal.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #eee;">
+        <h3 style="margin:0;font-size:1.1rem;color:#2c3e50;"><i class="fas fa-plus"></i> Add Home</h3>
+        <button id="addHomeCloseBtn" style="background:#e74c3c;color:#fff;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;">Close</button>
+      </div>
+      <form id="addHomeForm" style="padding:16px 18px;display:grid;gap:12px;">
+        <label><strong>Home Name:</strong><br>
+          <input type="text" name="homeName" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>Address:</strong><br>
+          <input type="text" name="address" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>Total Rooms:</strong><br>
+          <input type="number" name="totalRooms" min="1" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>Single Rooms:</strong><br>
+          <input type="number" name="singleRooms" min="0" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>Double Rooms:</strong><br>
+          <input type="number" name="doubleRooms" min="0" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>Number of Beds:</strong><br>
+          <input type="number" name="beds" min="1" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>User Name:</strong><br>
+          <input type="text" name="userName" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <label><strong>User Password:</strong><br>
+          <input type="password" name="userPassword" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;">
+        </label>
+        <button type="submit" style="background:#3498db;color:#fff;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;">Save Home</button>
+      </form>`;
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Close actions
+    document.getElementById('addHomeCloseBtn').addEventListener('click',()=>document.body.removeChild(overlay));
+    overlay.addEventListener('click',e=>{if(e.target===overlay)document.body.removeChild(overlay);});
+
+    // Submit
+    document.getElementById('addHomeForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      const fd=new FormData(this);
+      const newHome={
+        id: allCareHomes.length + 1, // Generate new ID
+        name:fd.get('homeName'),
+        address:fd.get('address'),
+        beds:parseInt(fd.get('beds')),
+        residents: 0, // New home starts with 0 residents
+        bank: 0, // New home starts with 0 bank balance
+        cash: 0, // New home starts with 0 cash balance
+        balance: 0, // New home starts with 0 total balance
+        userName:fd.get('userName'),
+        userPassword:fd.get('userPassword'),
+        lastAction: "Home created - just now"
+      };
+      
+      // Add to array
+      allCareHomes.push(newHome);
+      
+      // Update main table
+      updateMainTable();
+      
+      console.log("New Home:",newHome);
+      alert("Home added successfully!");
+      document.body.removeChild(overlay);
+    });
+  }
+
+  // Events
+  document.addEventListener('DOMContentLoaded',()=>{
+    document.querySelectorAll('.btnViewMore').forEach(btn=>{
+      btn.addEventListener('click',function(){
+        try{const home=JSON.parse(this.getAttribute('data-home'));openHomeModal(home);}catch(e){alert('Unable to open details.');}
+      });
+    });
+    document.getElementById('btnAddHome').addEventListener('click',openAddHomeModal);
+    document.getElementById('btnViewHome').addEventListener('click',openAllHomesModal);
+    document.getElementById('btnTechnicalContact').addEventListener('click',()=>{
+      window.open('https://api.whatsapp.com/send?phone=94769988123&text=Hello%20WEBbuilders.lk%20%F0%9F%91%8B%2C', '_blank');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+[07-Oct-2025 09:54:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home8/carehomesurvey/my.carehomesurvey.com/index.php:50
+Stack trace:
+#0 {main}
+  thrown in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 50
+[07-Oct-2025 09:54:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home8/carehomesurvey/my.carehomesurvey.com/index.php:50
+Stack trace:
+#0 {main}
+  thrown in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 50
+[07-Oct-2025 09:56:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home8/carehomesurvey/my.carehomesurvey.com/index.php:50
+Stack trace:
+#0 {main}
+  thrown in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 50
+[07-Oct-2025 09:56:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home8/carehomesurvey/my.carehomesurvey.com/index.php:50
+Stack trace:
+#0 {main}
+  thrown in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 50
+[07-Oct-2025 10:05:10 UTC] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 51
+[07-Oct-2025 10:06:05 UTC] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 51
+[07-Oct-2025 10:07:21 UTC] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 51
+[07-Oct-2025 10:07:28 UTC] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 51
+[07-Oct-2025 10:07:51 UTC] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 51
+[07-Oct-2025 10:09:18 UTC] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 51
+[07-Oct-2025 10:12:09 UTC] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 51
+[07-Oct-2025 10:18:18 UTC] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 52
+[07-Oct-2025 10:18:30 UTC] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 52
+[07-Oct-2025 10:20:17 UTC] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 55
+[07-Oct-2025 10:20:31 UTC] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 55
+[07-Oct-2025 10:20:43 UTC] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home8/carehomesurvey/my.carehomesurvey.com/index.php on line 55
